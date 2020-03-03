@@ -19,6 +19,7 @@ public:
   void Mahattan();
   void AstarE();
   void AstarM();
+  void nameOfFile();
 
   string fileName;
   int row;

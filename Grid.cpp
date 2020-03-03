@@ -33,6 +33,35 @@ Grid::Grid()
   }
 }
 
+Grid::Grid(int row, int column)
+{
+
+  inRow = row;
+  inColumn = column;//default grid would be 5 by 5
+  myGrid = new char*[inRow];//create an 1-D array first
+
+
+  for(int i=0; i<inRow; ++i)
+  {
+    myGrid[i] = new char[inColumn];
+    //for each cell in the 1-D array, we point another 1-D array in there to make a 2-D array
+  }
+  for(int i=0; i<inRow; ++i)
+  {
+  }
+
+  for(int i=0; i<inRow; ++i)
+  {
+    for(int j=0; j<inColumn; ++j)
+    {
+      myGrid[i][j] = '-';
+      //initialize the grid with all '-'
+
+    }
+  }
+}
+
+
 //destructor
 Grid::~Grid()
 {
@@ -109,7 +138,6 @@ void Grid::fileOp(string filename)
   int linenumber = 0;
   getline(inFile, line); //read the first line from the file, which is the row numebr
   inRow = stoi(line);  //parse string to int
-  inRow = inRow;
   inColumn = inRow;
 
   while (getline(inFile, line)) //while there is a line in the file
