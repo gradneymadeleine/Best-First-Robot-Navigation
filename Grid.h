@@ -23,10 +23,10 @@ public:
   int inRow;
   int inColumn;
   int linelength;
-  int intial_x;
-  int intial_y;
-  int goal_x;
-  int goal_y;
+  int i_x;
+  int i_y;
+  int gl_x;
+  int gl_y;
   string line;
   string fileName;
   ifstream inFile;

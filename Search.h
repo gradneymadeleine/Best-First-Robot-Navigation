@@ -12,8 +12,8 @@ public:
 
 
 
-  double getEucliDist(int intial_x, int intial_y,int goal_x, int goal_y);
-  double getManhatDist(int intial_x, int intial_y, int goal_x, int goal_y);
+  double getEucliDist(int i_x, int i_y,int gl_x, int gl_y);
+  double getManhatDist(int i_x, int i_y, int gl_x, int gl_y);
   void evalDist(double EuclidDist, double ManhatDist);
   void Euclidian();
   void Mahattan();

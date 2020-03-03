@@ -151,14 +151,14 @@ void Grid::fileOp(string filename)
   for(int i=0; i <inRow; i++){
     for (int j=0; j <inColumn; j++){
       if(myGrid[i][j] == 'i'){
-        intial_x = i;
-        intial_y = j;
-        cout<< "Inital State: ("<< intial_x<< ", " <<intial_y << ")" <<endl;
+        i_x = i;
+        i_y = j;
+        cout<< "Inital State: ("<< i_x<< ", " <<i_y << ")" <<endl;
       }
       else if(myGrid[i][j] == 'g'){
-        goal_x =i;
-        goal_y =j;
-        cout<< "GoalState: ("<< goal_x<< ", "<< goal_y << ")" <<endl;
+        gl_x =i;
+        gl_y =j;
+        cout<< "glState: ("<< gl_x<< ", "<< gl_y << ")" <<endl;
       }
     }
   }

@@ -1,21 +1,16 @@
 #include<iostream>
 #include<fstream>
 #include "Search.h"
+#include
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
-
   Search s;
+  cout << "What is the name of your file?" << endl;
   s.Euclidian();
-
-  cout<<"\n\n\n\n\n\n" <<endl;
   s.Mahattan();
-
-  cout<<"\n\n\n\n\n\n" <<endl;
   s.AstarE();
-
-  cout<<"\n\n\n\n\n\n" <<endl;
   s.AstarM();
 }

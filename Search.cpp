@@ -19,10 +19,9 @@ Search::~Search()
 
 }
 
-
 void Search::Euclidian() //stratagy 1
 {
-  cout << "What is the name of your file?" << endl;
+  
   cin>>fileName;
   File f(fileName);
   f.getFile();
@@ -32,68 +31,68 @@ void Search::Euclidian() //stratagy 1
   Grid g(row,column);
   g.fileOp(fileName);
 
-  while (g.intial_x != g.goal_x || g.intial_y != g.goal_y){
+  while (g.i_x != g.gl_x || g.i_y != g.gl_y){
     //check where it can go in it's pos
     double tempDis =0;
     int pos = -1;
     eucliDist = 1000.0;
-    if (g.intial_x - 1 > -1)
+    if (g.i_x - 1 > -1)
        {
-          if (g.myGrid[g.intial_x - 1][g.intial_y] == '.' || g.myGrid[g.intial_x - 1][g.intial_y] == 'g')
+          if (g.myGrid[g.i_x - 1][g.i_y] == '.' || g.myGrid[g.i_x - 1][g.i_y] == 'g')
          {
            cout << "Up" << endl;
-           tempDis = getEucliDist(g.intial_x - 1, g.intial_y, g.goal_x, g.goal_y);
+           tempDis = getEucliDist(g.i_x - 1, g.i_y, g.gl_x, g.gl_y);
            if(tempDis <= eucliDist)
            {
                eucliDist = tempDis;
-               g.myGrid[g.intial_x][g.intial_y] = 'O';
-               g.myGrid[g.intial_x - 1][g.intial_y] = 'i';
-               g.intial_x = g.intial_x - 1;
+               g.myGrid[g.i_x][g.i_y] = 'O';
+               g.myGrid[g.i_x - 1][g.i_y] = 'i';
+               g.i_x = g.i_x - 1;
            }
          }
        }
-       if (g.intial_x + 1 < row)
+       if (g.i_x + 1 < row)
       {
-        if(g.myGrid[g.intial_x + 1][g.intial_y] == '.' || g.myGrid[g.intial_x + 1][g.intial_y] == 'g')
+        if(g.myGrid[g.i_x + 1][g.i_y] == '.' || g.myGrid[g.i_x + 1][g.i_y] == 'g')
         {
           cout << "Down" << endl;
-          tempDis = getEucliDist(g.intial_x + 1, g.intial_y, g.goal_x, g.goal_y);
+          tempDis = getEucliDist(g.i_x + 1, g.i_y, g.gl_x, g.gl_y);
           if (tempDis <= eucliDist)
           {
               eucliDist = tempDis;
-              g.myGrid[g.intial_x][g.intial_y] = 'O';
-              g.myGrid[g.intial_x + 1][g.intial_y] = 'i';
-              g.intial_x = g.intial_x + 1;
+              g.myGrid[g.i_x][g.i_y] = 'O';
+              g.myGrid[g.i_x + 1][g.i_y] = 'i';
+              g.i_x = g.i_x + 1;
           }
         }
       }
-      if (g.intial_y - 1 > -1)
+      if (g.i_y - 1 > -1)
       {
-        if(g.myGrid[g.intial_x][g.intial_y - 1] == '.' || g.myGrid[g.intial_x][g.intial_y - 1] == 'g')
+        if(g.myGrid[g.i_x][g.i_y - 1] == '.' || g.myGrid[g.i_x][g.i_y - 1] == 'g')
         {
           cout << "Left" << endl;
-          tempDis = getEucliDist(g.intial_x, g.intial_y - 1, g.goal_x, g.goal_y);
+          tempDis = getEucliDist(g.i_x, g.i_y - 1, g.gl_x, g.gl_y);
           if (tempDis <= eucliDist)
           {
               eucliDist = tempDis;
-              g.myGrid[g.intial_x][g.intial_y] = 'O';
-              g.myGrid[g.intial_x][g.intial_y - 1] = 'i';
-              g.intial_y = g.intial_y - 1;
+              g.myGrid[g.i_x][g.i_y] = 'O';
+              g.myGrid[g.i_x][g.i_y - 1] = 'i';
+              g.i_y = g.i_y - 1;
           }
         }
       }
-      if (g.intial_y + 1 < row)
+      if (g.i_y + 1 < row)
       {
-        if(g.myGrid[g.intial_x][g.intial_y + 1] == '.' || g.myGrid[g.intial_x][g.intial_y + 1] == 'g')
+        if(g.myGrid[g.i_x][g.i_y + 1] == '.' || g.myGrid[g.i_x][g.i_y + 1] == 'g')
         {
           cout << "Right" << endl;
-          tempDis = getEucliDist(g.intial_x, g.intial_y + 1, g.goal_x, g.goal_y);
+          tempDis = getEucliDist(g.i_x, g.i_y + 1, g.gl_x, g.gl_y);
           if (tempDis <= eucliDist)
           {
               eucliDist = tempDis;
-              g.myGrid[g.intial_x][g.intial_y] = 'O';
-              g.myGrid[g.intial_x][g.intial_y + 1] = 'i';
-              g.intial_y = g.intial_y + 1;
+              g.myGrid[g.i_x][g.i_y] = 'O';
+              g.myGrid[g.i_x][g.i_y + 1] = 'i';
+              g.i_y = g.i_y + 1;
           }
         }
       }
@@ -112,18 +111,18 @@ void Search::Mahattan(){ //stratgy 3
   cost =0;
   Grid g(row,column);
   g.fileOp(fileName);
-  while (g.intial_x != g.goal_x || g.intial_y != g.goal_y){
+  while (g.i_x != g.gl_x || g.i_y != g.gl_y){
     //check where it can go in it's pos
     double tempDis =0;
     int pos = -1;
     manhatDist = 1000.0;
 
-    if (g.intial_x - 1 > -1)
+    if (g.i_x - 1 > -1)
          {
-           if(g.myGrid[g.intial_x - 1][g.intial_y] == '.' || g.myGrid[g.intial_x - 1][g.intial_y] == 'g')
+           if(g.myGrid[g.i_x - 1][g.i_y] == '.' || g.myGrid[g.i_x - 1][g.i_y] == 'g')
            {
              cout << "Up" << endl;
-             tempDis = getManhatDist(g.intial_x - 1, g.intial_y, g.goal_x, g.goal_y);
+             tempDis = getManhatDist(g.i_x - 1, g.i_y, g.gl_x, g.gl_y);
              if (tempDis <= manhatDist)
              {
                  manhatDist = tempDis;
@@ -131,12 +130,12 @@ void Search::Mahattan(){ //stratgy 3
              }
            }
          }
-         if (g.intial_x + 1 < row)
+         if (g.i_x + 1 < row)
          {
-           if (g.myGrid[g.intial_x + 1][g.intial_y] == '.' || g.myGrid[g.intial_x + 1][g.intial_y] == 'g')
+           if (g.myGrid[g.i_x + 1][g.i_y] == '.' || g.myGrid[g.i_x + 1][g.i_y] == 'g')
            {
              cout << "Down" << endl;
-             tempDis = getManhatDist(g.intial_x + 1, g.intial_y, g.goal_x, g.goal_y);
+             tempDis = getManhatDist(g.i_x + 1, g.i_y, g.gl_x, g.gl_y);
              if (tempDis <= manhatDist)
              {
                  manhatDist = tempDis;
@@ -144,11 +143,11 @@ void Search::Mahattan(){ //stratgy 3
              }
            }
          }
-         if (g.intial_y - 1 > -1 )
+         if (g.i_y - 1 > -1 )
          {
-           if (g.myGrid[g.intial_x][g.intial_y - 1] == '.' || g.myGrid[g.intial_x][g.intial_y - 1] == 'g'){
+           if (g.myGrid[g.i_x][g.i_y - 1] == '.' || g.myGrid[g.i_x][g.i_y - 1] == 'g'){
              cout << "Left" << endl;
-             tempDis = getManhatDist(g.intial_x, g.intial_y - 1, g.goal_x, g.goal_y);
+             tempDis = getManhatDist(g.i_x, g.i_y - 1, g.gl_x, g.gl_y);
              if (tempDis <= manhatDist)
              {
                  manhatDist = tempDis;
@@ -157,12 +156,12 @@ void Search::Mahattan(){ //stratgy 3
            }
 
          }
-         if (g.intial_y + 1 < row)
+         if (g.i_y + 1 < row)
          {
-           if (g.myGrid[g.intial_x][g.intial_y + 1] == '.' || g.myGrid[g.intial_x][g.intial_y + 1] == 'g')
+           if (g.myGrid[g.i_x][g.i_y + 1] == '.' || g.myGrid[g.i_x][g.i_y + 1] == 'g')
            {
              cout << "Right" << endl;
-             tempDis = getManhatDist(g.intial_x, g.intial_y + 1, g.goal_x, g.goal_y);
+             tempDis = getManhatDist(g.i_x, g.i_y + 1, g.gl_x, g.gl_y);
              if (tempDis <= manhatDist)
              {
                  manhatDist = tempDis;
@@ -174,27 +173,27 @@ void Search::Mahattan(){ //stratgy 3
 
          if (pos == 0)
          {
-             g.myGrid[g.intial_x][g.intial_y] = 'O';
-             g.myGrid[g.intial_x - 1][g.intial_y] = 'i';
-             g.intial_x = g.intial_x - 1;
+             g.myGrid[g.i_x][g.i_y] = 'O';
+             g.myGrid[g.i_x - 1][g.i_y] = 'i';
+             g.i_x = g.i_x - 1;
          }
          else if (pos == 1)
          {
-             g.myGrid[g.intial_x][g.intial_y] = 'O';
-             g.myGrid[g.intial_x + 1][g.intial_y] = 'i';
-             g.intial_x = g.intial_x + 1;
+             g.myGrid[g.i_x][g.i_y] = 'O';
+             g.myGrid[g.i_x + 1][g.i_y] = 'i';
+             g.i_x = g.i_x + 1;
          }
          else if (pos == 2)
          {
-             g.myGrid[g.intial_x][g.intial_y] = 'O';
-             g.myGrid[g.intial_x][g.intial_y - 1] = 'i';
-             g.intial_y = g.intial_y - 1;
+             g.myGrid[g.i_x][g.i_y] = 'O';
+             g.myGrid[g.i_x][g.i_y - 1] = 'i';
+             g.i_y = g.i_y - 1;
          }
          else if (pos == 3)
          {
-             g.myGrid[g.intial_x][g.intial_y] = 'O';
-             g.myGrid[g.intial_x][g.intial_y + 1] = 'i';
-             g.intial_y = g.intial_y + 1;
+             g.myGrid[g.i_x][g.i_y] = 'O';
+             g.myGrid[g.i_x][g.i_y + 1] = 'i';
+             g.i_y = g.i_y + 1;
          }
 
          cost++;
@@ -214,69 +213,69 @@ void Search::AstarE(){
   Grid g(row,column);
   g.fileOp(fileName);
 
-  while (g.intial_x != g.goal_x || g.intial_y != g.goal_y){
+  while (g.i_x != g.gl_x || g.i_y != g.gl_y){
     //check where it can go in it's pos
     double tempDis =0;
     int pos = -1;
     eucliDist = 1000.0;
-    if (g.intial_x - 1 > -1 )
+    if (g.i_x - 1 > -1 )
        {
-         if (g.myGrid[g.intial_x - 1][g.intial_y] == '.' || g.myGrid[g.intial_x - 1][g.intial_y] == 'g')
+         if (g.myGrid[g.i_x - 1][g.i_y] == '.' || g.myGrid[g.i_x - 1][g.i_y] == 'g')
          {
            cout << "Up" << endl;
-           tempDis = getEucliDist(g.intial_x - 1, g.intial_y, g.goal_x, g.goal_y) + cost;
+           tempDis = getEucliDist(g.i_x - 1, g.i_y, g.gl_x, g.gl_y) + cost;
            if(tempDis <= eucliDist)
            {
                eucliDist = tempDis;
-               g.myGrid[g.intial_x][g.intial_y] = 'O';
-               g.myGrid[g.intial_x - 1][g.intial_y] = 'i';
-               g.intial_x = g.intial_x - 1;
+               g.myGrid[g.i_x][g.i_y] = 'O';
+               g.myGrid[g.i_x - 1][g.i_y] = 'i';
+               g.i_x = g.i_x - 1;
             }
          }
       }
-      if (g.intial_x + 1 < row)
+      if (g.i_x + 1 < row)
      {
-       if(g.myGrid[g.intial_x + 1][g.intial_y] == '.' || g.myGrid[g.intial_x + 1][g.intial_y] == 'g')
+       if(g.myGrid[g.i_x + 1][g.i_y] == '.' || g.myGrid[g.i_x + 1][g.i_y] == 'g')
          cout << "Down" << endl;
          node++;
-         tempDis = getEucliDist(g.intial_x + 1, g.intial_y, g.goal_x, g.goal_y)+ cost;
+         tempDis = getEucliDist(g.i_x + 1, g.i_y, g.gl_x, g.gl_y)+ cost;
          if (tempDis <= eucliDist)
          {
              eucliDist = tempDis;
-             g.myGrid[g.intial_x][g.intial_y] = 'O';
-             g.myGrid[g.intial_x + 1][g.intial_y] = 'i';
-             g.intial_x = g.intial_x + 1;
+             g.myGrid[g.i_x][g.i_y] = 'O';
+             g.myGrid[g.i_x + 1][g.i_y] = 'i';
+             g.i_x = g.i_x + 1;
          }
      }
-     if (g.intial_y - 1 > -1 )
+     if (g.i_y - 1 > -1 )
      {
-       if (g.myGrid[g.intial_x][g.intial_y - 1] == '.' || g.myGrid[g.intial_x][g.intial_y - 1] == 'g'){
+       if (g.myGrid[g.i_x][g.i_y - 1] == '.' || g.myGrid[g.i_x][g.i_y - 1] == 'g'){
          cout << "Left" << endl;
          node++;
-         tempDis = getEucliDist(g.intial_x, g.intial_y - 1, g.goal_x, g.goal_y) + cost;
+         tempDis = getEucliDist(g.i_x, g.i_y - 1, g.gl_x, g.gl_y) + cost;
          if (tempDis <= eucliDist)
          {
              eucliDist = tempDis;
-             g.myGrid[g.intial_x][g.intial_y] = 'O';
-             g.myGrid[g.intial_x][g.intial_y - 1] = 'i';
-             g.intial_y = g.intial_y - 1;
+             g.myGrid[g.i_x][g.i_y] = 'O';
+             g.myGrid[g.i_x][g.i_y - 1] = 'i';
+             g.i_y = g.i_y - 1;
          }
        }
 
      }
-     if (g.intial_y + 1 < row)
+     if (g.i_y + 1 < row)
      {
-       if(g.myGrid[g.intial_x][g.intial_y + 1] == '.' || g.myGrid[g.intial_x][g.intial_y + 1] == 'g')
+       if(g.myGrid[g.i_x][g.i_y + 1] == '.' || g.myGrid[g.i_x][g.i_y + 1] == 'g')
        {
          cout << "Right" << endl;
          node++;
-         tempDis = getEucliDist(g.intial_x, g.intial_y + 1, g.goal_x, g.goal_y)+ cost;
+         tempDis = getEucliDist(g.i_x, g.i_y + 1, g.gl_x, g.gl_y)+ cost;
          if (tempDis <= eucliDist)
          {
              eucliDist = tempDis;
-             g.myGrid[g.intial_x][g.intial_y] = 'O';
-             g.myGrid[g.intial_x][g.intial_y + 1] = 'i';
-             g.intial_y = g.intial_y + 1;
+             g.myGrid[g.i_x][g.i_y] = 'O';
+             g.myGrid[g.i_x][g.i_y + 1] = 'i';
+             g.i_y = g.i_y + 1;
          }
        }
 
@@ -300,68 +299,68 @@ void Search::AstarM(){
   int pos = -1;
   manhatDist = 1000.0;
 
-  while (g.intial_x != g.goal_x || g.intial_y != g.goal_y){
+  while (g.i_x != g.gl_x || g.i_y != g.gl_y){
     //check where it can go in it's pos
-  if (g.intial_x - 1 > -1)
+  if (g.i_x - 1 > -1)
        {
-         if (g.myGrid[g.intial_x - 1][g.intial_y] == '.' || g.myGrid[g.intial_x - 1][g.intial_y] == 'g')
+         if (g.myGrid[g.i_x - 1][g.i_y] == '.' || g.myGrid[g.i_x - 1][g.i_y] == 'g')
          {
            cout << "Up" << endl;
            node++;
-           tempDis = getManhatDist(g.intial_x - 1, g.intial_y, g.goal_x, g.goal_y) + cost;
+           tempDis = getManhatDist(g.i_x - 1, g.i_y, g.gl_x, g.gl_y) + cost;
            if (tempDis <= manhatDist)
            {
                manhatDist = tempDis;
-               g.myGrid[g.intial_x][g.intial_y] = 'O';
-               g.myGrid[g.intial_x - 1][g.intial_y] = 'i';
-               g.intial_x = g.intial_x - 1;
+               g.myGrid[g.i_x][g.i_y] = 'O';
+               g.myGrid[g.i_x - 1][g.i_y] = 'i';
+               g.i_x = g.i_x - 1;
            }
          }
 
        }
-       if (g.intial_x + 1 < row)
+       if (g.i_x + 1 < row)
        {
-         if(g.myGrid[g.intial_x + 1][g.intial_y] == '.' || g.myGrid[g.intial_x + 1][g.intial_y] == 'g')
+         if(g.myGrid[g.i_x + 1][g.i_y] == '.' || g.myGrid[g.i_x + 1][g.i_y] == 'g')
          {
 
          }
            cout << "Down" << endl;
            node++;
-           tempDis = getManhatDist(g.intial_x + 1, g.intial_y, g.goal_x, g.goal_y) +cost;
+           tempDis = getManhatDist(g.i_x + 1, g.i_y, g.gl_x, g.gl_y) +cost;
            if (tempDis <= manhatDist)
            {
                manhatDist = tempDis;
-               g.myGrid[g.intial_x][g.intial_y] = 'O';
-               g.myGrid[g.intial_x + 1][g.intial_y] = 'i';
-               g.intial_x = g.intial_x + 1;
+               g.myGrid[g.i_x][g.i_y] = 'O';
+               g.myGrid[g.i_x + 1][g.i_y] = 'i';
+               g.i_x = g.i_x + 1;
            }
        }
-       if (g.intial_y - 1 > -1 && (g.myGrid[g.intial_x][g.intial_y - 1] == '.' || g.myGrid[g.intial_x][g.intial_y - 1] == 'g'))
+       if (g.i_y - 1 > -1 && (g.myGrid[g.i_x][g.i_y - 1] == '.' || g.myGrid[g.i_x][g.i_y - 1] == 'g'))
        {
            cout << "Left" << endl;
            node++;
-           tempDis = getManhatDist(g.intial_x, g.intial_y - 1, g.goal_x, g.goal_y)+ cost;
+           tempDis = getManhatDist(g.i_x, g.i_y - 1, g.gl_x, g.gl_y)+ cost;
            if (tempDis <= manhatDist)
            {
                manhatDist = tempDis;
-               g.myGrid[g.intial_x][g.intial_y] = 'O';
-               g.myGrid[g.intial_x][g.intial_y - 1] = 'i';
-               g.intial_y = g.intial_y - 1;
+               g.myGrid[g.i_x][g.i_y] = 'O';
+               g.myGrid[g.i_x][g.i_y - 1] = 'i';
+               g.i_y = g.i_y - 1;
            }
        }
-       if (g.intial_y + 1 < row)
+       if (g.i_y + 1 < row)
        {
-         if(g.myGrid[g.intial_x][g.intial_y + 1] == '.' || g.myGrid[g.intial_x][g.intial_y + 1] == 'g')
+         if(g.myGrid[g.i_x][g.i_y + 1] == '.' || g.myGrid[g.i_x][g.i_y + 1] == 'g')
          {
            cout << "Right" << endl;
            node++;
-           tempDis = getManhatDist(g.intial_x, g.intial_y + 1, g.goal_x, g.goal_y)+ cost;
+           tempDis = getManhatDist(g.i_x, g.i_y + 1, g.gl_x, g.gl_y)+ cost;
            if (tempDis <= manhatDist)
            {
                manhatDist = tempDis;
-               g.myGrid[g.intial_x][g.intial_y] = 'O';
-               g.myGrid[g.intial_x][g.intial_y + 1] = 'i';
-               g.intial_y = g.intial_y + 1;
+               g.myGrid[g.i_x][g.i_y] = 'O';
+               g.myGrid[g.i_x][g.i_y + 1] = 'i';
+               g.i_y = g.i_y + 1;
            }
          }
        }
@@ -373,12 +372,12 @@ void Search::AstarM(){
 }
 
 //formulas for Euclidian and Manhattan distance
-double Search::getEucliDist(int intial_x, int intial_y,int goal_x, int goal_y)
+double Search::getEucliDist(int i_x, int i_y,int gl_x, int gl_y)
 {
-  return sqrt((intial_x - goal_x)*(intial_x - goal_x)+(intial_y - goal_y)*(intial_y- goal_y));
+  return sqrt((i_x - gl_x)*(i_x - gl_x)+(i_y - gl_y)*(i_y- gl_y));
 }
-double Search::getManhatDist(int intial_x, int intial_y, int goal_x, int goal_y)
+double Search::getManhatDist(int i_x, int i_y, int gl_x, int gl_y)
 {
-  return abs((intial_x - goal_x)+ (intial_y - goal_y));
+  return abs((i_x - gl_x)+ (i_y - gl_y));
 
 }
