@@ -174,6 +174,20 @@ void Grid::fileOp(string filename)
     }
     linenumber++;
   }
+  for(int i=0; i <fileRow; i++){
+    for (int j=0; j <fileColumn; j++){
+      if(myGrid[i][j] == 'i'){
+        intial_x = i;
+        intial_y = j;
+        cout<< "Inital State: ("<< intial_x<< ", " intial_y << ")" <<endl;
+      }
+      else if(myGrid[i][j] == 'g'){
+        goal_x =i;
+        goal_y =j;
+        cout<< "GoalState: ("<< goal_x<< ", " goal_y << ")" <<endl;
+      }
+    }
+  }
 
   inFile.close();
 
