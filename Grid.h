@@ -26,7 +26,7 @@ public:
   int intial_x;
   int intial_y;
   int goal_x;
-  int gaol_y;
+  int goal_y;
   string line;
   string fileName;
   ifstream inFile;

@@ -1,17 +1,20 @@
 #include<iostream>
 #include<fstream>
-#include "Grid.h"
+#include "Search.h"
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
-  File a("test1.txt");
-  a.getFile();
+  Search s;
+  s.Euclidian();
 
-  int row = a.getFileRow();
-  int column = a.getFileColum();
+  cout<<"\n\n\n\n\n\n" <<endl;
+  s.Mahattan();
 
-  Grid g(row, column);
-  g.fileOp("test1.txt");
+  cout<<"\n\n\n\n\n\n" <<endl;
+  s.AstarE();
+
+  cout<<"\n\n\n\n\n\n" <<endl;
+  s.AstarM();
 }
