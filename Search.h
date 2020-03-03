@@ -20,6 +20,7 @@ public:
   void AstarE();
   void AstarM();
   void nameOfFile();
+  void AllStratagies();
 
   string fileName;
   int row;

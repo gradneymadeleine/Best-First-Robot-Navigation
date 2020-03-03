@@ -21,7 +21,7 @@ Search::~Search()
 
 void Search::Euclidian() //stratagy 1
 {
-  
+
   cin>>fileName;
   File f(fileName);
   f.getFile();
@@ -369,6 +369,13 @@ void Search::AstarM(){
    }
    g.printGrid();
    cout << "The cost would be: " << cost << endl;
+}
+
+void Search::AllStratagies(){
+  this->Search::Euclidian();
+  this->Search::Mahattan();
+  this->Search::AstarE();
+  this->Search::AstarM();
 }
 
 //formulas for Euclidian and Manhattan distance
